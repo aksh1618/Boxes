@@ -1,0 +1,24 @@
+name: boxes
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  movies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repo: 'LuisAlejandro/movie-box'
+      - run: npm install
+      - name: Update
+        uses: ./
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID_MOVIE }}
+          TRAKT_ID: ${{ secrets.TRAKT_CLIENT_ID }}
+          TRAKT_USERNAME: ${{ secrets.TRAKT_USERNAME }}
+          MOVIE_BOX_MODE: 'movies'
