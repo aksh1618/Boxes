@@ -20,3 +20,18 @@ jobs:
           TRAKT_ID: ${{ secrets.TRAKT_CLIENT_ID }}
           TRAKT_USERNAME: ${{ secrets.TRAKT_USERNAME }}
           MOVIE_BOX_MODE: 'movies'
+  music:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: 'jacc/music-box'
+      - run: npm install
+      - name: Update
+        uses: ./
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: ${{ secrets.GIST_ID_MUSIC }}
+          TRAKT_ID: ${{ secrets.LASTFM_API_KEY }}
+          TRAKT_USERNAME: ${{ secrets.LASTFM_USERNAME }}
+    
