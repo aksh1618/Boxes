@@ -3,38 +3,8 @@ on:
   push:
     branches: master
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */12 * * *'
 jobs:
-  movies:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: 'LuisAlejandro/movie-box'
-      - run: npm install
-      - name: Update
-        uses: ./
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GIST_ID: ${{ secrets.GIST_ID_MOVIE }}
-          TRAKT_ID: ${{ secrets.TRAKT_CLIENT_ID }}
-          TRAKT_USERNAME: ${{ secrets.TRAKT_USERNAME }}
-          MOVIE_BOX_MODE: 'movies'
-  tv-shows:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: 'LuisAlejandro/movie-box'
-      - run: npm install
-      - name: Update
-        uses: ./
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GIST_ID: ${{ secrets.GIST_ID_TV_SHOWS }}
-          TRAKT_ID: ${{ secrets.TRAKT_CLIENT_ID }}
-          TRAKT_USERNAME: ${{ secrets.TRAKT_USERNAME }}
-          MOVIE_BOX_MODE: 'shows'
   trakt-stats:
     runs-on: ubuntu-latest
     steps:
