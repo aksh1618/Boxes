@@ -5,21 +5,6 @@ on:
   schedule:
     - cron: '0 */12 * * *'
 jobs:
-  trakt-stats:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: 'LuisAlejandro/movie-box'
-      - run: npm install
-      - name: Update
-        uses: ./
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GIST_ID: ${{ secrets.GIST_ID_TRAKT_STATS }}
-          TRAKT_ID: ${{ secrets.TRAKT_CLIENT_ID }}
-          TRAKT_USERNAME: ${{ secrets.TRAKT_USERNAME }}
-          MOVIE_BOX_MODE: 'stats'
   music:
     runs-on: ubuntu-latest
     steps:
